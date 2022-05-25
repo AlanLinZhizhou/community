@@ -1,6 +1,8 @@
 package com.linzz.community;
 
+import com.linzz.community.dao.DiscussPostMapper;
 import com.linzz.community.dao.UserMapper;
+import com.linzz.community.entity.DiscussPost;
 import com.linzz.community.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 @ContextConfiguration(classes=CommunityApplication.class)
@@ -15,6 +18,8 @@ public class MapperTest {
 
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    DiscussPostMapper discussPostMapper;
 
     @Test
     public void testSelectUser(){
@@ -52,4 +57,14 @@ public class MapperTest {
         System.out.println(rows);
     }
 
+    @Test
+    public void testSelectPost(){
+        List<DiscussPost> list = discussPostMapper.selectDiscussPost(149,0,10);
+        for(DiscussPost post : list){
+            System.out.println(post);
+        }
+
+        int rows = discussPostMapper.selectDiscussPostRows(149);
+        System.out.println(rows);
+    }
 }
