@@ -15,5 +15,6 @@ public class LoggerTests {
     @Test
     public void testLogger(){
         System.out.println(logger.getName());
+        int a=0;
     }
 }
